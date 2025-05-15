@@ -18,23 +18,54 @@ void vector_scene::Update()
 
 	float theta = randomf(0, 360);
 	
-	if (IsMouseButtonPressed(0))
+	if (IsMouseButtonDown(0))
 	{
 		Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
 
 		for (int i = 0; i < 100; i++)
 		{
 			Body* body = m_world->CreateBody(position, 0.05f, ColorFromHSV(randomf(360), 1, 1));
-			float offset = randomf(0, 360);
-			float x = cosf(theta);
-			float y = sinf(theta);
+			float offset = randomf(-180, 180);
+			float x = cosf((theta + offset) * DEG2RAD);
+			float y = sinf((theta + offset) * DEG2RAD);
 
-			body->velocity = Vector2{ x, y } * randomf(1, 6);
+			body->velocity = Vector2{ x, y } *randomf(1, 6);
+			//body->gravityScale = 0.5f;
+			body->restitution = randomf(0.5f, 1.0f);
 		}
 
 	}
 
-	m_world->Step(dt);
+	// Apply collision
+
+	for (auto body : m_world->GetBodies())
+	{
+		if (body->position.y < -5)
+		{
+			body->position.y = -5;
+			body->velocity.y *= -body->restitution;
+		}
+
+		if (body->position.x < -9)
+		{
+			body-> position.x = -9;
+			body->velocity.x *= -body->restitution;
+		}
+
+		if (body->position.x > 9)
+		{
+			body->position.x = 9;
+			body->velocity.x = -body->restitution;
+		}
+	}
+
+}
+
+void vector_scene::FixedUpdate()
+{
+	// Apply force
+
+	m_world->Step(Scene::fixedTimestep);
 }
 
 void vector_scene::Draw()

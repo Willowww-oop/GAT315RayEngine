@@ -18,8 +18,11 @@ public:
 
 	void DestroyAll();
 
+	std::vector<Body*> GetBodies() { return m_bodies; }
+
+	static Vector2 gravity;
+
 private:
-	Vector2 m_gravity;
 
 	std::vector<Body*> m_bodies;
 };
