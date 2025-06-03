@@ -23,10 +23,10 @@ public:
     inline static bool TypePhysicsDropdownEditMode = false;
     inline static int TypePhysicsDropdownActive = 0;
     inline static float GravityScaleSliderValue = 2.5f;
-    inline static float DampingPhysicsSliderValue = 0.5f;
+    inline static float DampingPhysicsSliderValue = 1.0f;
     inline static float RestitutionPhysicsSliderValue = 0.2f;
     inline static float WorldGravityPhysicsSliderValue = -9.8f;
     inline static float GravitationPhysicsSliderValue = 0.5f;
-    inline static float StiffnessPhysicsSliderValue = 1.0f;
+    inline static float StiffnessPhysicsSliderValue = 5.0f;
     inline static bool SimulateButtonPressed = false;
 };
