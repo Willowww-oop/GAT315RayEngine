@@ -26,7 +26,7 @@ void polar_scene::Draw()
 	
 	int steps = 50;
 
-	DrawArchSpiral(2, 3, RED);
+	DrawCustom(2.0f, 5.0f, RED);
 
 	m_camera->EndMode();
 }
@@ -37,36 +37,126 @@ void polar_scene::DrawArchSpiral(float a, float b, Color& color)
 	float rate = 2;
 	float time = (float)GetTime() * rate;
 	float steps = 10 * 2 * PI;
+	Vector2 prevPoint = { 0 };
 	
-	for (float x = 0.5f; x < steps; x++)
+	for (float x = 0.1f; x < steps; x+= 0.1f)
 	{
 		p.angle = x;
 		p.radius = a + (b * p.angle);
 
+		Vector2 point = (Vector2)p;
+
 		if (x > 1)
 		{
-
+			DrawLine(prevPoint, point, 2, PURPLE);
 		}
 
-		DrawCircle(Vector2{ p.radius, p.angle }, 0.25f, color);
+		prevPoint = point;
+
+		DrawCircle(point, 0.25f, color);
+
 	}
 
 }
 
 void polar_scene::DrawCardioid(float a, Color& color)
 {
+	Polar p;
+	float rate = 2;
+	float time = (float)GetTime() * rate;
+	float steps = 10 * 2 * PI;
+	Vector2 prevPoint = { 0 };
+
+	for (float x = 0.1f; x < steps; x+= 0.1f)
+	{
+		p.angle = x;
+		p.radius = a * (1 + cosf(p.angle));
+
+		Vector2 point = (Vector2)p;
+
+		if (x > 1)
+		{
+			DrawLine(prevPoint, point, 2, PURPLE);
+		}
+
+		prevPoint = point;
+
+		//rawCircle(point, 0.25f, color);
+	}
+
+
 }
 
 void polar_scene::Limacon(float a, float b, Color& color)
 {
+	Polar p;
+	float rate = 2;
+	float time = (float)GetTime() * rate;
+	float steps = 10 * 2 * PI;
+	Vector2 prevPoint = { 0 };
+
+	for (float x = 0.1f; x < steps; x += 0.1f)
+	{
+		p.angle = x;
+		p.radius = a + (b * cosf(p.angle));
+
+		Vector2 point = (Vector2)p;
+
+		if (x > 1)
+		{
+			DrawLine(prevPoint, point, 2, PURPLE);
+		}
+
+		prevPoint = point;
+	}
 }
 
 void polar_scene::DrawRose(float a, float k, Color& color)
 {
+	Polar p;
+	float rate = 2;
+	float time = (float)GetTime() * rate;
+	float steps = 10 * 2 * PI;
+	Vector2 prevPoint = { 0 };
+
+	for (float x = 0.1f; x < steps; x += 0.1f)
+	{
+		p.angle = x;
+		p.radius = a * cosf(k * p.angle);
+
+		Vector2 point = (Vector2)p;
+
+		if (x > 1)
+		{
+			DrawLine(prevPoint, point, 2, PURPLE);
+		}
+
+		prevPoint = point;
+	}
 }
 
 void polar_scene::DrawCustom(float a, float b, Color& color)
 {
+	Polar p;
+	float rate = 2;
+	float time = (float)GetTime() * rate;
+	float steps = 10 * 2 * PI;
+	Vector2 prevPoint = { 0 };
+
+	for (float x = 0.1f; x < steps; x += 0.1f)
+	{
+		p.angle = x;
+		p.radius = (b * sinf(p.angle)) * (a * cosf(p.angle) + -tanf(p.angle));
+
+		Vector2 point = (Vector2)p;
+
+		if (x > 1)
+		{
+			DrawLine(prevPoint, point, 2, PURPLE);
+		}
+
+		prevPoint = point;
+	}
 }
 
 void polar_scene::DrawGUI()

@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "AABB.h"
 
 class Scene;
 
@@ -8,11 +9,17 @@ struct Body
 
 	enum class Type
 	{
-		Static, 
+		Dynamic, 
 		Kinematic,
-		Dynamic
+		Static
 	};
 
+	enum class ForceMode
+	{
+		Force,
+		Impulse,
+		Velocity
+	};
 
 public:
 	Body() = default;
@@ -40,12 +47,12 @@ public:
 		color{ color }
 	{}
 
-
+	AABB GetAABB() const { return AABB{ position, { size * 2, size * 2 } }; }
 
 	void Step(float dt);
 	void Draw(const Scene& scene);
 
-	void ApplyForce(const Vector2 force);
+	void ApplyForce(const Vector2 force, ForceMode forceMode = ForceMode::Force);
 	void ClearForce() { force = Vector2{ 0, 0 }; }
 
 public:

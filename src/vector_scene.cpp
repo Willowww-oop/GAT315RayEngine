@@ -1,6 +1,8 @@
 #include "vector_scene.h"
 #include "body.h"
+#include "gravitation.h"
 #include "world.h"
+#include "gui.h"
 #include "raymath.h"
 #include "mathUtils.h"
 
@@ -18,7 +20,7 @@ void vector_scene::Update()
 
 	float theta = randomf(0, 360);
 	
-	if (IsMouseButtonDown(0))
+	if (IsMouseButtonPressed(0))
 	{
 		Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
 
@@ -81,5 +83,5 @@ void vector_scene::Draw()
 
 void vector_scene::DrawGUI()
 {
-	//
+	GUI::Draw();
 }

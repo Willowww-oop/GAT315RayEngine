@@ -29,10 +29,12 @@ public:
 
 	friend struct Body;
 
-protected:
+public:
 	void DrawGrid(float slices, float thickness, const Color& color) const;
 	void DrawText(const std::string& text, const Vector2& world, int fontSize, Color& color) const;
 	void DrawCircle(const Vector2& world, float radius, Color& color) const;
+	void DrawCircleLine(const Vector2& world, float radius, Color& color, int pixels = 0) const;
+
 	void DrawLine(const Vector2& v1, const Vector2& v2, float thickness, Color& color) const;
 
 protected:
@@ -41,5 +43,5 @@ protected:
 	Color m_background{ WHITE };
 
 	SceneCamera* m_camera{ nullptr };
-	World* m_world{ nullptr };
+	class World* m_world{ nullptr };
 };
