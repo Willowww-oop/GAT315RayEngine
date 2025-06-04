@@ -1,5 +1,7 @@
 Welcome to my Physics Simulator where you will be able to create bodies that will react differently with physics
 
+The only thing that you'd need to do is download the zip file and then start the program once you've opened it up in visual studio
+
 Some of the things that are in this simulator are:
 
 World Gravity; you can change how all of the bodies will react 
