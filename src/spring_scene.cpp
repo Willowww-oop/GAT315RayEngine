@@ -54,6 +54,7 @@ void spring_scene::Update()
 
 	if (IsKeyPressed(KEY_SPACE)) World::simulate = !World::simulate;
 
+	if (IsKeyPressed(KEY_E)) m_world->DestroyAll();
 
 	if (!GUI::mouseOverGUI)
 	{

@@ -91,5 +91,7 @@ void World::DestroyAll()
 	{
 		delete spring;
 	}
+
+	m_springs.clear();
 }
 
