@@ -1,6 +1,6 @@
 #include "body.h"
 #include "intergrator.h"
-#include "world.h";
+#include "world.h"
 #include "scene.h"
 #include "raymath.h"
 

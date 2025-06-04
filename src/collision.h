@@ -1,12 +1,6 @@
 #pragma once
-#include"raylib.h"
 
-struct Collision
-{
-	struct Body* bodyA;
-	struct Body* bodyB;
+#include "world.h"
 
-	float restitution;	// restitution of both bodies
-	float depth;		// penetration depth
-	Vector2 normal;		// normal contact vector
-};
+void CreateContacts(const bodies_t& bodies, contacts_t& contacts);
+void SeparateContacts(contacts_t& contacts);

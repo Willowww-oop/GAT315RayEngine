@@ -1,6 +1,6 @@
 #pragma once
 #include "body.h"
-#include "raymath.h";
+#include "raymath.h"
 
 inline void ExplicitInegrator(Body& body, float timestep)
 {
